@@ -17,7 +17,7 @@
 <script language="javascript">
     var map;
     function mapInit(){
-
+        // "poiBounds":"",
         var buildingLayer = new AMap.Buildings({zIndex:130,merge:false,sort:false,zooms:[17,20]});
         var options =
             {
@@ -27,7 +27,7 @@
                     rejectTexture:true,//是否屏蔽自定义地图的纹理
                     color1: 'ffffff00',//楼顶颜色
                     color2: 'ffffcc00',//楼面颜色
-                    path: [[123.354625,41.798524],[123.355958,41.800083],[123.353103,41.800869],[123.352542,41.799298]]
+                    path: [[123.469605,41.807943],[123.46959,41.807561],[123.468291,41.807506],[123.468285,41.808326],[123.468956,41.808319],[123.468988,41.808072],[123.468763,41.808053],[123.468779,41.807954],[123.469155,41.807948],[123.469576,41.80798],[123.469595,41.807765]]
                 }
                 ]
             };
@@ -40,7 +40,7 @@
             showIndoorMap:false,
             showLabel:false,
             mapStyle:'amap://styles/light',
-            center:[123.354285,41.799143],
+            center:[123.468456,41.808020],
             features:['bg','point','road'],
             viewMode:'3D',
             layers:[
@@ -60,7 +60,7 @@
         }));
 
         var marker = new AMap.Marker({
-            position: new AMap.LngLat(123.354285,41.799143),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+            position: new AMap.LngLat(123.468456,41.808020),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
             title: '北京'
         });
 
