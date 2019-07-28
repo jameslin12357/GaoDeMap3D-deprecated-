@@ -10,10 +10,14 @@
             height: 100%
         }
     </style>
+    <link rel="stylesheet" href="./search.css">
     <script language="javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=5a757297a2ef60c6c50aa13e4fb8f311&plugin=AMap.ControlBar"></script>
+
 </head>
 <body >
 <div id="container" style="width:100%; height:100%;resize:both;"></div>
+<button id="done">done</button>
+<div id="coordsContainer"></div>
 <script language="javascript">
     var map;
     function mapInit(){
@@ -27,7 +31,7 @@
                     rejectTexture:true,//是否屏蔽自定义地图的纹理
                     color1: 'ffffff00',//楼顶颜色
                     color2: 'ffffcc00',//楼面颜色
-                    path: [[123.425319,41.798055],[123.42485,41.798142],[123.424185,41.798055],[123.424066,41.798289],[123.425502,41.798571]]
+                    path: [[123.447478,41.793647],[123.447206,41.793643],[123.447216,41.793186],[123.448354,41.793201],[123.448294,41.793696],[123.447862,41.793688],[123.447879,41.793476],[123.447552,41.793472]]
                 }
                 ]
             };
@@ -40,7 +44,7 @@
             showIndoorMap:false,
             showLabel:false,
             mapStyle:'amap://styles/light',
-            center:[123.425283,41.798321],
+            center:[123.416223,41.815870],
             features:['bg','point','road'],
             viewMode:'3D',
             layers:[
@@ -60,7 +64,7 @@
         }));
 
         var marker = new AMap.Marker({
-            position: new AMap.LngLat(123.425283,41.798321),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+            position: new AMap.LngLat(123.416223,41.815870),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
             title: '北京'
         });
 
@@ -79,12 +83,14 @@
 
             // 触发事件类型
             var type = ev.type;
-            console.log(`${lnglat.lng},${lnglat.lat}`);
+            document.getElementById('coordsContainer').innerText += `[${lnglat.lng},${lnglat.lat}],`
+            //console.log(`${lnglat.lng},${lnglat.lat}`);
         });
 
 
     }
     mapInit()
 </script>
+<script src="./search.js"></script>
 </body>
 </html>
