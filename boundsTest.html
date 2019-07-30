@@ -19,7 +19,7 @@
 <div id="container" ></div>
 <form class="layui-form" action="" lay-filter="example" id="checkboxPoiType">
     <div class="layui-form-item">
-        <div class="layui-input-block">
+        <div class="layui-input-block ml-0">
             <input type="checkbox" name="like[write]" title="医院" checked class="checkboxPoiTypes">
             <input type="checkbox" name="like[read]" title="学校" class="checkboxPoiTypes">
             <input type="checkbox" name="like[daze]" title="商店" class="checkboxPoiTypes">
@@ -190,10 +190,56 @@
 
     function checkBoxes(){
 
-        var checkboxes = document.getElementsByClassName("layui-form-checkbox");
-        checkboxes[0].classList.add('selected');
+        var checkboxes = Array.from(document.getElementsByClassName("layui-form-checkbox"));
 
-        Array.from(checkboxes).forEach(function(checkbox){
+        checkboxes[0].classList.add('selected');
+        checkboxes[3].addEventListener('click',function(e){
+            var stateChecked = checkboxes[3].classList.contains('layui-form-checked');
+            if (stateChecked === true){
+                var checkBoxesSelected = document.getElementsByClassName('selected');
+                if (checkBoxesSelected.length !== 0){
+                    Array.from(checkBoxesSelected).forEach(function(checkBoxSelected){
+                        if (checkBoxSelected.children[0].innerText === "医院"){
+                            poisHospitalAreas.forEach(function(obj){
+                                var polygon = new AMap.Polygon({
+                                    path: obj.path,
+                                    fillColor: '#fff', // 多边形填充颜色
+                                    borderWeight: 2, // 线条宽度，默认为 1
+                                    strokeColor: 'red', // 线条颜色
+                                });
+                                map.add(polygon);
+                            });
+                            //areas.push(poisHospitalAreas);
+                        } else if (checkBoxSelected.children[0].innerText === "学校"){
+                            poisSchoolAreas.forEach(function(obj){
+                                var polygon = new AMap.Polygon({
+                                    path: obj.path,
+                                    fillColor: '#fff', // 多边形填充颜色
+                                    borderWeight: 2, // 线条宽度，默认为 1
+                                    strokeColor: 'red', // 线条颜色
+                                });
+                                map.add(polygon);
+                            })
+                            //areas.push(poisSchoolAreas);
+                        } else {
+                            poisShopAreas.forEach(function(obj){
+                                var polygon = new AMap.Polygon({
+                                    path: obj.path,
+                                    fillColor: '#fff', // 多边形填充颜色
+                                    borderWeight: 2, // 线条宽度，默认为 1
+                                    strokeColor: 'red', // 线条颜色
+                                });
+                                map.add(polygon);
+                            })
+                            //areas.push(poisShopAreas);
+                        }
+                    });
+                }
+            } else {
+                map.clearMap();
+            }
+        });
+        checkboxes.slice(0,3).forEach(function(checkbox){
             checkbox.addEventListener('click',function(e){
                 var stateChecked = checkbox.classList.contains('layui-form-checked');
                 //var typePoi = checkbox.children[0].innerText;
