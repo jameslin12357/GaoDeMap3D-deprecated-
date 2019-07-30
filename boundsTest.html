@@ -72,8 +72,11 @@
                 path: path
             });
         });
-        var areasStringified = JSON.stringify(areas);
-        poisHospitalAreas = areasStringified.slice(1,areasStringified.length-1);
+        poisHospitalAreas = areas;
+        // var areasStringified = JSON.stringify(areas);
+        // console.log(areasStringified);
+        // console.log(areasStringified.length);
+        // poisHospitalAreas = areasStringified.slice(1,areasStringified.length-1);
         // var options =
         //     {
         //         hideWithoutStyle:false,//是否隐藏设定区域外的楼块
@@ -103,8 +106,11 @@
                 path: path
             });
         });
-        var areasStringified = JSON.stringify(areas);
-        poisSchoolAreas = areasStringified.slice(1,areasStringified.length-1);
+        poisSchoolAreas = areas;
+        // var areasStringified = JSON.stringify(areas);
+        // console.log('f');
+        // poisSchoolAreas = areasStringified.slice(1,areasStringified.length-1);
+        // console.log('g');
         // var options =
         //     {
         //         hideWithoutStyle:false,//是否隐藏设定区域外的楼块
@@ -133,9 +139,11 @@
                 path: path
             });
         });
-        var areasStringified = JSON.stringify(areas);
-        console.log(areasStringified);
-        poisShopAreas = areasStringified.slice(1,areasStringified.length-1);
+        poisShopAreas = areas;
+        // console.log('h');
+        // var areasStringified = JSON.stringify(areas);
+        // console.log('j');
+        // poisShopAreas = areasStringified.slice(1,areasStringified.length-1);
         // var options =
         //     {
         //         hideWithoutStyle:false,//是否隐藏设定区域外的楼块
@@ -149,10 +157,11 @@
     setPoisHospital();
     setPoisSchool();
     setPoisShop();
+    // console.log(poisHospitalAreas);
     var options =
         {
             hideWithoutStyle:false,//是否隐藏设定区域外的楼块
-            areas:[poisHospitalAreas]
+            areas:poisHospitalAreas
         };
     buildingLayer.setStyle(options); //此配色优先级高于自定义mapStyle
     var map = new AMap.Map("container", {
@@ -180,12 +189,14 @@
     }));
 
     function checkBoxes(){
+
         var checkboxes = document.getElementsByClassName("layui-form-checkbox");
         checkboxes[0].classList.add('selected');
+
         Array.from(checkboxes).forEach(function(checkbox){
             checkbox.addEventListener('click',function(e){
                 var stateChecked = checkbox.classList.contains('layui-form-checked');
-                var typePoi = checkbox.children[0].innerText;
+                //var typePoi = checkbox.children[0].innerText;
 
                 if (stateChecked === true){
                     checkbox.classList.add('selected');
@@ -203,6 +214,7 @@
                     checkbox.classList.remove('selected');
                 }
                 var checkBoxesSelected = document.getElementsByClassName('selected');
+                console.log(checkBoxesSelected.length);
                 if (checkBoxesSelected.length === 0){
                     buildingLayer.setStyle({
                         hideWithoutStyle:false,//是否隐藏设定区域外的楼块
@@ -212,11 +224,20 @@
                     var areas = [];
                     Array.from(checkBoxesSelected).forEach(function(checkBoxSelected){
                         if (checkBoxSelected.children[0].innerText === "医院"){
-                            areas.push(poisHospitalAreas);
+                            poisHospitalAreas.forEach(function(obj){
+                                areas.push(obj);
+                            });
+                            //areas.push(poisHospitalAreas);
                         } else if (checkBoxSelected.children[0].innerText === "学校"){
-                            areas.push(poisSchoolAreas);
+                            poisSchoolAreas.forEach(function(obj){
+                                areas.push(obj);
+                            })
+                            //areas.push(poisSchoolAreas);
                         } else {
-                            areas.push(poisShopAreas);
+                            poisShopAreas.forEach(function(obj){
+                                areas.push(obj);
+                            })
+                            //areas.push(poisShopAreas);
                         }
 
                     });
@@ -230,7 +251,7 @@
             });
         });
     }
-    setInterval(checkBoxes,3000);
+    setTimeout(checkBoxes,5000);
 
 
     // poisHospital.forEach(function(poi){
