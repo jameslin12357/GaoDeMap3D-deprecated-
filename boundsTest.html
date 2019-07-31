@@ -20,10 +20,10 @@
 <form class="layui-form" action="" lay-filter="example" id="checkboxPoiType">
     <div class="layui-form-item">
         <div class="layui-input-block ml-0">
-            <input type="checkbox" name="like[write]" title="医院" checked class="checkboxPoiTypes">
-            <input type="checkbox" name="like[read]" title="学校" class="checkboxPoiTypes">
-            <input type="checkbox" name="like[daze]" title="商店" class="checkboxPoiTypes">
-            <input type="checkbox" name="like[daze]" title="边框">
+            <input type="checkbox" name="like[write]" title="医院" checked class="checkboxPoiTypes" lay-skin="red">
+            <input type="checkbox" name="like[read]" title="学校" class="checkboxPoiTypes" lay-skin="green">
+            <input type="checkbox" name="like[daze]" title="商店" class="checkboxPoiTypes" lay-skin="blue">
+            <input type="checkbox" name="like[daze]" title="边框" lay-skin="redLight">
         </div>
     </div>
 </form>
@@ -193,6 +193,21 @@
         var checkboxes = Array.from(document.getElementsByClassName("layui-form-checkbox"));
 
         checkboxes[0].classList.add('selected');
+        // checkboxes[0].addEventListener('click',function(e){
+        //     e.target.children[0].classList.add("bgRed");
+        //     e.target.children[1].classList.add("clRed");
+        // });
+        // checkboxes[1].addEventListener('click',function(e){
+        //     e.target.children[0].classList.add("bgGreen");
+        //     e.target.children[1].classList.add("clGreen");
+        // });
+        // checkboxes[0].children[0].classList.add("bgRed");
+        // checkboxes[0].children[1].classList.add("clRed");
+        // checkboxes[1].children[0].classList.add("bgGreen");
+        // checkboxes[1].children[1].classList.add("clGreen");
+        // checkboxes[2].children[0].classList.add("bgBlue");
+        // checkboxes[2].children[1].classList.add("clBlue");
+
         checkboxes[3].addEventListener('click',function(e){
             var stateChecked = checkboxes[3].classList.contains('layui-form-checked');
             if (stateChecked === true){
@@ -260,7 +275,6 @@
                     checkbox.classList.remove('selected');
                 }
                 var checkBoxesSelected = document.getElementsByClassName('selected');
-                console.log(checkBoxesSelected.length);
                 if (checkBoxesSelected.length === 0){
                     buildingLayer.setStyle({
                         hideWithoutStyle:false,//是否隐藏设定区域外的楼块
@@ -297,7 +311,7 @@
             });
         });
     }
-    setTimeout(checkBoxes,5000);
+    setTimeout(checkBoxes,3500);
 
 
     // poisHospital.forEach(function(poi){
