@@ -41,6 +41,14 @@
     color: #ff0000;
 }
 
+.layui-form-checked[lay-skin="orange"] span {
+    background-color: #ff8c00;
+}
+
+.layui-form-checked[lay-skin="orange"] i {
+    color: #ff8c00;
+}
+
 /*.layui-form-checked span:nth-of-type(1), .layui-form-checked:hover span:nth-of-type(1) {*/
 /*    background-color: #8b0000;*/
 /*}*/
