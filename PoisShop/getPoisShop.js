@@ -30,13 +30,15 @@ function getPoisShop(){
 
 function getPoisShopBounds(){
 
-    for (var i = 400; i < 500 ; i++){
+    for (var i = 800; i < 900 ; i++){
         //console.log(`https://ditu.amap.com/detail/${poisHousing[i].poiId}/?src=mypage&callnative=0`);
         request(`https://ditu.amap.com/detail/${poisShop[i].poiId}/?src=mypage&callnative=0`, function (error, response, body) {
             // console.log(poi.poiId);
             // console.log(body);
 
+
             if (body !== undefined){
+                // console.log(body.indexOf(`"shape":"`));
                 if (body.indexOf(`"shape":"`) !== -1){
                     // console.log(poi.poiId);
                     // console.log(body);
@@ -66,7 +68,7 @@ function getPoisShopBounds(){
                     //poisHousing1to300[i]["poiBounds"] = JSON.stringify(path);
                     // poisHousing[i]["poiBounds"] = JSON.stringify(path);
                     path = JSON.stringify(path);
-                    fs.appendFile("./poisShopBounds.txt", `{"poiId":"${poiId}","poiBounds":"${path}"},`, (error)=> {
+                    fs.appendFile("./poisShopBounds2.txt", `{"poiId":"${poiId}","poiBounds":"${path}"},`, (error)=> {
                         if (error) return console.log("追加文件失败" + error.message);
                         console.log("追加成功");
                     });

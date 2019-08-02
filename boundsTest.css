@@ -97,6 +97,22 @@
     color: #719129;
 }
 
+.layui-form-checked[lay-skin="pink"] span {
+    background-color: #912971;
+}
+
+.layui-form-checked[lay-skin="pink"] i {
+    color: #912971;
+}
+
+.layui-form-checked[lay-skin="midpink"] span {
+    background-color: #9d7b84;
+}
+
+.layui-form-checked[lay-skin="midpink"] i {
+    color: #9d7b84;
+}
+
 /*.layui-form-checked span:nth-of-type(1), .layui-form-checked:hover span:nth-of-type(1) {*/
 /*    background-color: #8b0000;*/
 /*}*/

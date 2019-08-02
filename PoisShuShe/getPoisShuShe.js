@@ -31,7 +31,7 @@ function getPoisShuShe(){
 
 function getPoisShuSheBounds(){
 
-    for (var i = 0; i < 50 ; i++){
+    for (var i = 100; i < 200 ; i++){
         //console.log(`https://ditu.amap.com/detail/${poisHousing[i].poiId}/?src=mypage&callnative=0`);
         request(`https://ditu.amap.com/detail/${poisShuShe[i].poiId}/?src=mypage&callnative=0`, function (error, response, body) {
             // console.log(poi.poiId);

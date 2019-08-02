@@ -64,7 +64,7 @@ function getPoisHospitalBounds(){
                     //poisHousing1to300[i]["poiBounds"] = JSON.stringify(path);
                     // poisHousing[i]["poiBounds"] = JSON.stringify(path);
                     path = JSON.stringify(path);
-                    fs.appendFile("./poisHospitalBounds.txt", `{"poiId":"${poiId}","poiBounds":"${path}"},`, (error)=> {
+                    fs.appendFile("./poisHospitalBounds2.txt", `{"poiId":"${poiId}","poiBounds":"${path}"},`, (error)=> {
                         if (error) return console.log("追加文件失败" + error.message);
                         console.log("追加成功");
                     });
@@ -90,6 +90,6 @@ function getPoisHospitalFinal(){
     });
 }
 
-getPoisHospitalFinal();
+getPoisHospitalBounds();
 
 
