@@ -450,50 +450,141 @@
     function checkBoxes() {
         var checkboxes = Array.from(document.getElementsByClassName("layui-form-checkbox"));
         checkboxes[0].classList.add('selected');
-        // checkboxes[3].addEventListener('click',function(e){
-        //     var stateChecked = checkboxes[3].classList.contains('layui-form-checked');
-        //     if (stateChecked === true){
-        //         var checkBoxesSelected = document.getElementsByClassName('selected');
-        //         if (checkBoxesSelected.length !== 0){
-        //             Array.from(checkBoxesSelected).forEach(function(checkBoxSelected){
-        //                 if (checkBoxSelected.children[0].innerText === "医院"){
-        //                     poisHospitalAreas.forEach(function(obj){
-        //                         var polygon = new AMap.Polygon({
-        //                             path: obj.path,
-        //                             fillColor: '', // 多边形填充颜色
-        //                             borderWeight: 2, // 线条宽度，默认为 1
-        //                             strokeColor: 'red', // 线条颜色
-        //                         });
-        //                         map.add(polygon);
-        //                     });
-        //                 } else if (checkBoxSelected.children[0].innerText === "学校"){
-        //                     poisSchoolAreas.forEach(function(obj){
-        //                         var polygon = new AMap.Polygon({
-        //                             path: obj.path,
-        //                             fillColor: '', // 多边形填充颜色
-        //                             borderWeight: 2, // 线条宽度，默认为 1
-        //                             strokeColor: 'red', // 线条颜色
-        //                         });
-        //                         map.add(polygon);
-        //                     })
-        //                 } else {
-        //                     poisShopAreas.forEach(function(obj){
-        //                         var polygon = new AMap.Polygon({
-        //                             path: obj.path,
-        //                             fillColor: '', // 多边形填充颜色
-        //                             borderWeight: 2, // 线条宽度，默认为 1
-        //                             strokeColor: 'red', // 线条颜色
-        //                         });
-        //                         map.add(polygon);
-        //                     })
-        //                 }
-        //             });
-        //         }
-        //     } else {
-        //         map.clearMap();
-        //     }
-        // });
-        checkboxes.slice(0, 13).forEach(function (checkbox) {
+        checkboxes[12].addEventListener('click',function(e){
+            var stateChecked = checkboxes[12].classList.contains('layui-form-checked');
+             if (stateChecked === true){
+             var checkBoxesSelected = document.getElementsByClassName('selected');
+           if (checkBoxesSelected.length !== 0){
+                Array.from(checkBoxesSelected).forEach(function(checkBoxSelected){
+                         if (checkBoxSelected.children[0].innerText === "医院"){
+                           poisHospitalAreas.forEach(function(obj){
+                                console.log(obj);
+                              var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "学校"){
+                             poisSchoolAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "商店"){
+                             poisShopAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "小区"){
+                             poisHousingAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "体育"){
+                             poisSportAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "别墅"){
+                             poisBieShuAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "商务写字楼"){
+                             poisSWXZLAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "商住两用楼宇"){
+                             poisSZLYLYAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "风景名胜"){
+                             poisFJMSAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "交通设施"){
+                             poisJTAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "住宿服务"){
+                             poisZSFWAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         } else if (checkBoxSelected.children[0].innerText === "产业园区"){
+                             poisCYYQAreas.forEach(function(obj){
+                                 var polygon = new AMap.Polygon({
+                                     path: obj.path,
+                                     fillColor: '', // 多边形填充颜色
+                                     borderWeight: 2, // 线条宽度，默认为 1
+                                     strokeColor: 'red', // 线条颜色
+                                 });
+                                 map.add(polygon);
+                             });
+                         }
+                     });
+                 }
+             } else {
+                 map.clearMap();
+             }
+         });
+        checkboxes.slice(0, 12).forEach(function (checkbox) {
             checkbox.addEventListener('click', function (e) {
                 var stateChecked = checkbox.classList.contains('layui-form-checked');
                 if (stateChecked === true) {

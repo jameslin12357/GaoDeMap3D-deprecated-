@@ -2,11 +2,15 @@
     position: fixed;
     top: 25px;
     left: 25px;
-
+    max-width: 550px;
 }
 
 .ml-0 {
     margin-left: 0!important;
+}
+
+.layui-form-checkbox {
+    margin-bottom: 5px;
 }
 
 .layui-form-checked[lay-skin="red"] span {
