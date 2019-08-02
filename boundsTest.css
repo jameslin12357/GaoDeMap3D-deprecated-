@@ -49,6 +49,54 @@
     color: #ff8c00;
 }
 
+.layui-form-checked[lay-skin="cyan"] span {
+    background-color: #00ffff;
+}
+
+.layui-form-checked[lay-skin="cyan"] i {
+    color: #00ffff;
+}
+
+.layui-form-checked[lay-skin="lightgreen"] span {
+    background-color: #00ff7f;
+}
+
+.layui-form-checked[lay-skin="lightgreen"] i {
+    color: #00ff7f;
+}
+
+.layui-form-checked[lay-skin="yellow"] span {
+    background-color: #ffff00;
+}
+
+.layui-form-checked[lay-skin="yellow"] i {
+    color: #ffff00;
+}
+
+.layui-form-checked[lay-skin="purple"] span {
+    background-color: #8000ff;
+}
+
+.layui-form-checked[lay-skin="purple"] i {
+    color: #8000ff;
+}
+
+.layui-form-checked[lay-skin="brown"] span {
+    background-color: #914929;
+}
+
+.layui-form-checked[lay-skin="brown"] i {
+    color: #914929;
+}
+
+.layui-form-checked[lay-skin="midgreen"] span {
+    background-color: #719129;
+}
+
+.layui-form-checked[lay-skin="midgreen"] i {
+    color: #719129;
+}
+
 /*.layui-form-checked span:nth-of-type(1), .layui-form-checked:hover span:nth-of-type(1) {*/
 /*    background-color: #8b0000;*/
 /*}*/
