@@ -424,11 +424,12 @@
         };
     buildingLayer.setStyle(options); //此配色优先级高于自定义mapStyle
     var map = new AMap.Map("container", {
+        //mapStyle: 'amap://styles/c9b420715d010af750bece4d3a0a8c9e',
         zoom:17,
         pitch:100,
         showIndoorMap:false,
         showLabel:true,
-        mapStyle:'amap://styles/normal',
+        mapStyle:'amap://styles/darkblue',
         center:[123.43,41.80],
         features:['bg','point','road','building'],
         viewMode:'3D',
