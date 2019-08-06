@@ -5,6 +5,13 @@
     max-width: 550px;
 }
 
+#inputSearchContainer {
+    position: fixed;
+    top: 25px;
+    right: 125px;
+}
+
+
 .ml-0 {
     margin-left: 0!important;
 }
@@ -115,6 +122,14 @@
 
 .layui-form-checked[lay-skin="midpink"] i {
     color: #9d7b84;
+}
+
+.flex {
+    display: flex;
+}
+
+.mr-10 {
+    margin-right: 10px;
 }
 
 /*.layui-form-checked span:nth-of-type(1), .layui-form-checked:hover span:nth-of-type(1) {*/
