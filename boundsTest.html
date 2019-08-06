@@ -440,27 +440,32 @@
         buttonSearch.addEventListener('click',function(e){
             map.clearMap();
             var valueSearch = inputSearch.value;
+            var result = [];
             poisHousing.forEach(function(poi){
-                if (poi.poiName === valueSearch) {
-                    var coords = poi.poiLocation.split(",");
-                    var lng = Number(coords[0]);
-                    var lat = Number(coords[1]);
-                    map.setCenter(new AMap.LngLat(lng,lat));
-                    new AMap.Polygon({
-                        bubble: true,
-                        fillColor: '',
-                        fillOpacity: 0.2,
-                        strokeColor: "#3b3bff",
-                        strokeWeight: 2,
-                        path: JSON.parse(poi.poiBounds),
-                        map: map
-                    });
-                    return 10;
+                if (poi["poiName"] === valueSearch) {
+                    result.push(poi.poiLocation);
+                    result.push(poi.poiBounds);
                 }
+            });
+            if (result.length === 0){
                 layer.msg("未能查到该小区", {
                     time: 4000
                 });
-            });
+            } else {
+                var coords = result[0].split(",");
+                var lng = Number(coords[0]);
+                var lat = Number(coords[1]);
+                map.setCenter(new AMap.LngLat(lng,lat));
+                new AMap.Polygon({
+                    bubble: true,
+                    fillColor: '',
+                    fillOpacity: 0.2,
+                    strokeColor: '#3b3bff',
+                    strokeWeight: 2,
+                    path: JSON.parse(result[1]),
+                    map: map
+                });
+            }
         });
         var checkboxes = Array.from(document.getElementsByClassName("layui-form-checkbox"));
         checkboxes[0].classList.add('selected');
@@ -681,7 +686,7 @@
 
 
     }
-    setTimeout(checkBoxes,3500);
+    setTimeout(checkBoxes,5000);
 </script>
 </body>
 </html>
