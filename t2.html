@@ -64,7 +64,7 @@
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 <script type="text/javascript"
-        src="https://webapi.amap.com/maps?v=1.4.15&key=5a757297a2ef60c6c50aa13e4fb8f311&plugin=Map3D,AMap.Scale,AMap.ControlBar"></script>
+        src="https://webapi.amap.com/maps?v=1.4.15&key=5a757297a2ef60c6c50aa13e4fb8f311&plugin=Map3D,AMap.Scale,AMap.ControlBar,AMap.MouseTool,AMap.PolyEditor"></script>
 <script type="text/javascript">
     var lnglatC = document.getElementById('lnglat');
     var done = document.getElementById('done');
@@ -88,7 +88,7 @@
         showIndoorMap:false,
         showLabel:true,
         mapStyle:'amap://styles/normal',
-        center:[123.507577,41.832547],
+        center:[116.368904,39.913423],
         features:['bg','point','road','building'],
         viewMode:'3D',
         layers:[
@@ -107,39 +107,90 @@
             top:'10px'
         }
     }));
+    function editLine(){
+        var path = [
+            new AMap.LngLat(116.368904,39.913423),
+            new AMap.LngLat(116.382122,39.901176),
+            new AMap.LngLat(116.387271,39.912501),
+            new AMap.LngLat(116.398258,39.904600)
+        ];
+
+        var polygon = new AMap.Polygon({
+            path: path,
+            fillColor: '#fff', // 多边形填充颜色
+            borderWeight: 2, // 线条宽度，默认为 1
+            strokeColor: 'red', // 线条颜色
+        });
+        polygon.on('click',function(e){
+            console.log(e);
+            map.plugin(["AMap.PolyEditor"],function(){
+                polylineEditor = new AMap.PolyEditor(map,e.target);
+                polylineEditor.open();
+            });
+        });
+        polygon.on('dblclick',function(e){
+            console.log(e);
+            console.log(e.target.getArea());
+            console.log(e.target.getBounds());
+            console.log(e.target.getPath());
+            var path = [];
+            e.target.getPath().forEach(function(point){
+                path.push([point.lng,point.lat]);
+                var marker = new AMap.Marker({
+                    icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                    position: [point.lng,point.lat]
+                });
+                map.add(marker);
+            });
+            console.log(path);
+            var options =
+                {
+                    hideWithoutStyle: false,//是否隐藏设定区域外的楼块
+                    areas: [{ //围栏1
+                        //visible:false,//是否可见
+                        rejectTexture:true,//是否屏蔽自定义地图的纹理
+                        color1: 'ffffff00',//楼顶颜色
+                        color2: 'ffffcc00',//楼面颜色
+                        path: path
+                    }]
+                };
+            buildingLayer.setStyle(options); //此配色优先级高于自定义mapStyle
+        });
+        map.add(polygon);
+
+        //构造折线编辑对象，并开启折线的编辑状态
+        // map.plugin(["AMap.PolyEditor"],function(){
+        //     polylineEditor = new AMap.PolyEditor(map,polygon);
+        //     polylineEditor.open();
+        // });
+    }
+
+    editLine();
+    // map.on('click', function(ev) {
+    //     // 触发事件的对象
+    //     var target = ev.target;
+    //
+    //     // 触发事件的地理坐标，AMap.LngLat 类型
+    //     var lnglat = ev.lnglat;
+    //     var lng = lnglat["lng"];
+    //     var lat = lnglat["lat"];
+    //     lnglatC.innerText += `[${lng},${lat}],`;
+    //     console.log(lnglat);
+    //     // 触发事件的像素坐标，AMap.Pixel 类型
+    //     var pixel = ev.pixel;
+    //
+    //     // 触发事件类型
+    //     var type = ev.type;
+    //
+    // });
+    // done.addEventListener('click',function(e){
+    //     console.log(`[${lnglatC.innerText.slice(0,lnglatC.innerText.length-1)}]`);
+    // })
 
 
-    map.on('click', function(ev) {
-        // 触发事件的对象
-        var target = ev.target;
-
-        // 触发事件的地理坐标，AMap.LngLat 类型
-        var lnglat = ev.lnglat;
-        var lng = lnglat["lng"];
-        var lat = lnglat["lat"];
-        lnglatC.innerText += `[${lng},${lat}],`;
-        console.log(lnglat);
-        // 触发事件的像素坐标，AMap.Pixel 类型
-        var pixel = ev.pixel;
-
-        // 触发事件类型
-        var type = ev.type;
-
-    });
-    done.addEventListener('click',function(e){
-        console.log(`[${lnglatC.innerText.slice(0,lnglatC.innerText.length-1)}]`);
-    })
 
 
 
-
-
-    var marker = new AMap.Marker({
-        position: new AMap.LngLat(123.507577,41.832547),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
-        title: 'b1'
-    });
-    // 将创建的点标记添加到已有的地图实例：
-    map.add(marker);
 
 
 

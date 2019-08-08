@@ -516,9 +516,45 @@
                                     path: obj.path,
                                     fillColor: '', // 多边形填充颜色
                                     borderWeight: 2, // 线条宽度，默认为 1
-                                    strokeColor: 'red', // 线条颜色
+                                    strokeColor: 'red' // 线条颜色
+                                });
+                                polygon.on('click',function(e){
+                                    // console.log(e);
+                                    map.plugin(["AMap.PolyEditor"],function(){
+                                        polylineEditor = new AMap.PolyEditor(map,e.target);
+                                        polylineEditor.open();
+                                    });
+                                });
+                                polygon.on('dblclick',function(e){
+                                    // console.log(e);
+                                    // console.log(e.target.getArea());
+                                    // console.log(e.target.getBounds());
+                                    console.log(e.target.getPath());
+                                    var path = [];
+                                    e.target.getPath().forEach(function(point){
+                                        path.push([point.lng,point.lat]);
+                                        var marker = new AMap.Marker({
+                                            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                                            position: [point.lng,point.lat]
+                                        });
+                                        map.add(marker);
+                                    });
+                                    console.log(JSON.stringify(path));
+                                    var options =
+                                        {
+                                            hideWithoutStyle: false,//是否隐藏设定区域外的楼块
+                                            areas: [{ //围栏1
+                                                //visible:false,//是否可见
+                                                rejectTexture:true,//是否屏蔽自定义地图的纹理
+                                                color1: '99ff8c00',//楼顶颜色
+                                                color2: '99ff8c00',//楼面颜色
+                                                path: path
+                                            }]
+                                        };
+                                    buildingLayer.setStyle(options); //此配色优先级高于自定义mapStyle
                                 });
                                 map.add(polygon);
+
                             });
                         } else if (checkBoxSelected.children[0].innerText === "体育"){
                             poisSportAreas.forEach(function(obj){
