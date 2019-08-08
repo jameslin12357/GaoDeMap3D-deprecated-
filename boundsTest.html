@@ -444,6 +444,7 @@
             var result = [];
             poisHousing.forEach(function(poi){
                 if (poi["poiName"] === valueSearch) {
+                    console.log("sss");
                     result.push(poi.poiLocation);
                     result.push(poi.poiBounds);
                 }
