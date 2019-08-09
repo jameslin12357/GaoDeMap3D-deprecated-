@@ -516,7 +516,7 @@
                                     path: obj.path,
                                     fillColor: '', // 多边形填充颜色
                                     borderWeight: 2, // 线条宽度，默认为 1
-                                    strokeColor: 'red' // 线条颜色
+                                    strokeColor: 'lightblue' // 线条颜色
                                 });
                                 polygon.on('click',function(e){
                                     // console.log(e);
@@ -524,6 +524,13 @@
                                         polylineEditor = new AMap.PolyEditor(map,e.target);
                                         polylineEditor.open();
                                     });
+                                });
+                                polygon.on('rightclick',function(e){
+                                    polylineEditor.close();
+                                    // map.plugin(["AMap.PolyEditor"],function(){
+                                    //     polylineEditor = new AMap.PolyEditor(map,e.target);
+                                    //     polylineEditor.open();
+                                    // });
                                 });
                                 polygon.on('dblclick',function(e){
                                     // console.log(e);
@@ -533,11 +540,11 @@
                                     var path = [];
                                     e.target.getPath().forEach(function(point){
                                         path.push([point.lng,point.lat]);
-                                        var marker = new AMap.Marker({
-                                            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
-                                            position: [point.lng,point.lat]
-                                        });
-                                        map.add(marker);
+                                        // var marker = new AMap.Marker({
+                                        //     icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                                        //     position: [point.lng,point.lat]
+                                        // });
+                                        // map.add(marker);
                                     });
                                     console.log(JSON.stringify(path));
                                     var options =
