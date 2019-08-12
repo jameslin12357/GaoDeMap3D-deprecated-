@@ -1,0 +1,12 @@
+赤峰市
+小区
+红山区
+count = 259 actual = 259 bounds = 173
+元宝山区
+count = 62 actual = 62 bounds = 41
+松山区
+count = 201 actual = 202 bounds = 130
+阿鲁科尔沁旗
+count = 85 actual = 85 bounds = 55
+巴林左旗
+count = 72 actual = 72 bounds = 43
