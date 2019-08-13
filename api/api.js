@@ -29,6 +29,27 @@ function getPois(type,location){
     }
 }
 
+// count = 162 actual = 148 bounds = NA
+function getPoisL(type,location){
+    for (var i = 0; i < 9; i++) {
+        var page = i + 1;
+        request(`https://restapi.amap.com/v3/place/text?key=c7aeb11746b35a92b7b6eee3178a05e4&keywords=&types=${type}&city=${location}&children=1&offset=20&page=${page}&extensions=all`, function (error, response, body) {
+            var obj = JSON.parse(body);
+            var pois = obj.pois;
+            var ids = "";
+            console.log(pois);
+
+            pois.forEach(function(poi){
+                ids += `{"poiId":"${poi.id}","poiLocation":"${poi.location}","poiLng":"${poi.location.split(",")[0]}","poiLat":"${poi.location.split(",")[1]}","poiName":"${poi.name}","poiType":"${poi.type}","poiAddress":"${poi.address}","poiBounds":"null","poiPcode":"${poi.pcode}","poiPname":"${poi.pname}","poiCitycode":"${poi.citycode}","poiCityname":"${poi.cityname}","poiAdcode":"${poi.adcode}","poiAdname":"${poi.adname}","poiRegion":"${poi.pname}/${poi.cityname}/${poi.adname}","poiParent":"${poi.parent}"},`;
+            });
+            fs.appendFile("./AHQ_L.txt", ids, (error)=> {
+                if (error) return console.log("追加文件失败" + error.message);
+                console.log("追加成功");
+            });
+        });
+    }
+}
+
 function getPoisBounds(){
 
     for (var i = 0; i < 81 ; i++){
@@ -92,6 +113,7 @@ function getPoisF(){
     });
 }
 
-getPoisF();
+//getPoisF();
 //getPoisBounds();
 //getPois(120302,150430);
+getPoisL(190403,150430);
